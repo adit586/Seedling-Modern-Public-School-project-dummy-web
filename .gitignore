@@ -1,5 +1,333 @@
-# Object file
-*.o
 
-# Ada Library Information
-*.ali
+const DisclaimerBanner = () => {
+  return (
+    <div className="bg-gradient-to-r from-yellow-100 via-pink-100 to-purple-100 border-b border-yellow-200">
+      <div className="container mx-auto px-4 py-3">
+        <p className="text-center text-sm md:text-base text-foreground font-medium">
+          ⚠️ This website is just for trial and was made during the AI Summer Camp 🌞✨
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default DisclaimerBanner; 
+import { GraduationCap } from 'lucide-react';
+
+const FeesSection = () => {
+  const feeStructure = [
+    { grade: 'Nursery - UKG', fees: '₹12,000', description: 'Foundation years with play-based learning' },
+    { grade: 'Class I - V', fees: '₹18,000', description: 'Primary education with holistic development' },
+    { grade: 'Class VI - VIII', fees: '₹22,000', description: 'Middle school with enhanced curriculum' },
+    { grade: 'Class IX - X', fees: '₹28,000', description: 'Secondary education with board preparation' },
+    { grade: 'Class XI - XII', fees: '₹32,000', description: 'Senior secondary with career guidance' },
+  ];
+
+  return (
+    <section className="py-16 bg-gradient-to-br from-green-50 to-blue-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center mb-4">
+            <GraduationCap className="w-8 h-8 text-green-600 mr-3" />
+            <h2 className="text-3xl font-bold text-gradient">School Fees 🎓</h2>
+          </div>
+          <p className="text-foreground text-lg">Quality education at affordable prices</p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {feeStructure.map((item, index) => (
+            <div 
+              key={index}
+              className="bg-card rounded-2xl p-6 card-shadow gentle-hover border border-green-100"
+            >
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-200 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-green-700">{index + 1}</span>
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-2">{item.grade}</h3>
+                <div className="text-3xl font-bold text-gradient mb-3">{item.fees}</div>
+                <p className="text-sm text-foreground">{item.description}</p>
+                <div className="mt-4 text-xs text-green-600 bg-green-50 rounded-full px-3 py-1 inline-block">
+                  Per Semester
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default FeesSection; 
+import { GraduationCap, Star } from 'lucide-react';
+
+const HeroSection = () => {
+  return (
+    <section className="relative py-20 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50"></div>
+      
+      {/* Floating elements */}
+      <div className="absolute top-20 left-10 float-animation">
+        <div className="w-16 h-16 bg-gradient-to-br from-green-200 to-blue-200 rounded-full flex items-center justify-center">
+          <GraduationCap className="w-8 h-8 text-green-700" />
+        </div>
+      </div>
+      
+      <div className="absolute top-32 right-16 float-animation" style={{ animationDelay: '2s' }}>
+        <div className="w-12 h-12 bg-gradient-to-br from-yellow-200 to-pink-200 rounded-full flex items-center justify-center">
+          <Star className="w-6 h-6 text-yellow-700" />
+        </div>
+      </div>
+      
+      <div className="container mx-auto px-4 text-center relative z-10">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gradient fade-in">
+          Welcome to Seedling Modern Public Schools
+        </h1>
+        <p className="text-xl md:text-2xl text-foreground mb-8 max-w-3xl mx-auto fade-in-delay-1">
+          Where young minds blossom into brilliant futures 🌱✨
+        </p>
+        <div className="fade-in-delay-2">
+          <button className="px-8 py-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold rounded-full hover:from-purple-600 hover:to-blue-600 transition-all duration-300 gentle-hover">
+            Discover Our School 🎓
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HeroSection; 
+import { Link, useLocation } from 'react-router-dom';
+import { School, MapPin } from 'lucide-react';
+
+const Navigation = () => {
+  const location = useLocation();
+  
+  return (
+    <nav className="bg-white/80 backdrop-blur-md border-b border-purple-100 sticky top-0 z-50">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="p-2 bg-gradient-to-br from-green-200 to-blue-200 rounded-full group-hover:scale-110 transition-transform duration-300">
+              <School className="w-6 h-6 text-green-700" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-gradient">Seedling Modern Public Schools</h1>
+              <p className="text-sm text-foreground">Growing minds, nurturing dreams</p>
+            </div>
+          </Link>
+          
+          <div className="flex items-center space-x-6">
+            <Link 
+              to="/" 
+              className={`px-4 py-2 rounded-full transition-all duration-300 ${
+                location.pathname === '/' 
+                  ? 'bg-gradient-to-r from-purple-200 to-blue-200 text-purple-700 font-medium' 
+                  : 'text-foreground hover:text-purple-600 hover:bg-purple-50'
+              }`}
+            >
+              Home
+            </Link>
+            <Link 
+              to="/branches" 
+              className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                location.pathname === '/branches' 
+                  ? 'bg-gradient-to-r from-purple-200 to-blue-200 text-purple-700 font-medium' 
+                  : 'text-foreground hover:text-purple-600 hover:bg-purple-50'
+              }`}
+            >
+              <MapPin className="w-4 h-4" />
+              <span>Our Branches</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navigation; 
+const PhotoGallery = () => {
+  const galleryImages = [
+    {
+      url: 'https://images.unsplash.com/photo-1472396961693-142e6e269027',
+      caption: 'Joyful playground 🎠',
+      description: 'Where laughter echoes every day'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
+      caption: 'Where ideas come alive 📚',
+      description: 'Our beautiful library space'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742',
+      caption: 'Learning spaces ✨',
+      description: 'Modern classrooms for modern minds'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625',
+      caption: 'Campus beauty 🌺',
+      description: 'Our stunning school building'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1501854140801-50d01698950b',
+      caption: 'Nature walks 🌿',
+      description: 'Learning extends beyond classrooms'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1496307653780-42ee777d4833',
+      caption: 'Innovation hub 💡',
+      description: 'Where creativity meets technology'
+    }
+  ];
+
+  return (
+    <section className="py-16 bg-gradient-to-br from-purple-50 to-pink-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gradient mb-4">Photo Gallery 🏫</h2>
+          <p className="text-foreground text-lg">Glimpses of our vibrant school life</p>
+        </div>
+        
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {galleryImages.map((image, index) => (
+            <div 
+              key={index}
+              className="bg-card rounded-2xl overflow-hidden card-shadow gentle-hover h-auto"
+            >
+              <div className="relative h-56">
+                <img 
+                  src={image.url} 
+                  alt={image.caption}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
+              <div className="p-6">
+                <h3 className="font-semibold text-foreground mb-3 text-lg">{image.caption}</h3>
+                <p className="text-sm text-foreground leading-relaxed">{image.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default PhotoGallery; 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
+
+@layer base {
+  :root {
+    --background: 250 250 255;
+    --foreground: 0 0 0; /* Changed to black */
+
+    --card: 255 255 255;
+    --card-foreground: 0 0 0; /* Changed to black */
+
+    --popover: 255 255 255;
+    --popover-foreground: 0 0 0; /* Changed to black */
+
+    --primary: 147 197 253;
+    --primary-foreground: 0 0 0; /* Changed to black */
+
+    --secondary: 254 240 255;
+    --secondary-foreground: 0 0 0; /* Changed to black */
+
+    --muted: 248 250 252;
+    --muted-foreground: 0 0 0; /* Changed to black */
+
+    --accent: 236 254 255;
+    --accent-foreground: 0 0 0; /* Changed to black */
+
+    --destructive: 248 113 113;
+    --destructive-foreground: 255 255 255;
+
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 147 197 253;
+
+    --radius: 1rem;
+
+    /* Custom pastel colors */
+    --mint: 167 243 208;
+    --lavender: 196 181 253;
+    --peach: 254 215 170;
+    --soft-yellow: 254 240 138;
+    --soft-pink: 252 165 165;
+    --soft-blue: 147 197 253;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 bg-clip-text text-transparent;
+  }
+  
+  .card-shadow {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .gentle-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .gentle-hover:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.fade-in-delay-1 {
+  animation: fade-in 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.fade-in-delay-2 {
+  animation: fade-in 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.fade-in-delay-3 {
+  animation: fade-in 0.8s ease-out 0.6s forwards;
+  opacity: 0;
+}
